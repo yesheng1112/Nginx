@@ -1,0 +1,68 @@
+1.Nginx的概念与特点:
+    Nginx("engine x")是一个高性能的HTTP和反向代理服务器。
+    特点:占用内存少，并发能力强。
+注意:Nginx可以作为静态网页的web服务器，同时还支持CGI协议的动态语言。
+    比如:perl,php等，但是不支持java。
+    java程序只能通过与tomcat配合完成。
+2.反向代理:
+    代理服务器。负载均衡。
+3.安装nginx:
+    1)需要的素材:
+        pcre-8.37.tar.gz
+        openssl-1.0.1.tar.gz
+        zlib-1.2.8.tar.gz
+        nginx-1.11.1.tar.gz
+    把以上的文件复制到Linux /opt文件夹下
+    2)安装pcre:
+        解压缩pcre-xx.tar.gz包
+        进入解压缩目录，执行./configure
+        如果提示，需要提前安装gcc++
+        进入安装光盘目录的软件包(/media/CentOSXX/Package)执行
+        rpm -ivh libstdc++-devel-4.4.7-17.el6.x86_64.rpm
+        rpm -ivh gcc-c++-4.4.7-17.el6.x86_64.rpm
+        这儿可能会报了一个错解决办法:
+            http://www.youhutong.com/index.php/article/index/92.html
+        ./configure完成后，回到pcre目录下执行make，再执行make install
+    3)安装openssl:
+        解压缩openssl-xx.tar.gz包。
+        进入解压缩目录，执行./config
+        make & make install
+    4)安装zlib:
+        解压缩zlib-xx.tar.gz包。
+        进入解压缩目录，执行./configure。
+        make & make install
+    5)安装nginx:
+        解压缩nginx-xx.tar.gz包。
+        进入解压缩目录，执行./configure。
+        make & make install
+3.启动:
+    1)启动命令:
+        在/usr/local/nginx/sbin目录下执行
+        ./nginx
+    2)关闭命令:
+        在/usr/local/nginx/sbin目录下执行
+        ./nginx -s stop
+    3)重新加载命令:
+        在/usr/local/nginx/sbin目录下执行
+        ./nginx -s reload
+    注意:
+        nginx无法启动: libpcre.so.1/libpcre.so.0: cannot open shared object file
+    解决办法:
+        64位系统则:
+            ln -s /usr/local/lib/libpcre.so.1 /lib64
+        32位系统则：
+            ln -s /usr/local/lib/libpcre.so.1 /lib
+    4)设置nginx为启动服务:
+        修改linux 启动脚本/etc/rc.d/rc
+        加入:
+            /usr/local/nginx/sbin/nginx
+    5)进入首页:
+        输入ip地址，默认的是80端口，所以不需要输入端口号。
+        注意:
+            关闭防火墙，要不开放80端口访问。
+
+
+
+
+
+
