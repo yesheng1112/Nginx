@@ -110,8 +110,3 @@
         如果是支持http1.1的浏览器每次访问要占两个连接，所以普通的静态访问最大并发数是： worker_connections * worker_processes /2，
         而如果是HTTP作为反向代理来说，最大并发数量应该是worker_connections * worker_processes/4。
         因为作为反向代理服务器，每个并发会建立与客户端的连接和与后端服务的连接，会占用两个连接。
-
-
-
-
-
